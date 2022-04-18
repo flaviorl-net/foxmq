@@ -75,7 +75,7 @@ namespace FoxMQ.Service
 
             bool status = false;
 
-            if (await _queueData.Remove(request.Id) > 0)
+            if (await _queueData.Remove(request.Id, request.Queue) > 0)
             {
                 status = true;
             }

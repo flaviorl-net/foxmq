@@ -8,7 +8,7 @@ namespace FoxMQ.Interfaces
         Task<long> Add(string queueName, string body);
         MessageQueue Get(string queueName);
         int Lock(long id);
-        Task<int> Remove(long id);
+        Task<int> Remove(long id, string queueName);
         Task<int> UnLock(int minutesWait);
     }
 }

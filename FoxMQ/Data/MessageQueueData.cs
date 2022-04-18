@@ -110,15 +110,16 @@ namespace FoxMQ
             }
         }
 
-        public async Task<int> Remove(long id)
+        public async Task<int> Remove(long id, string queueName)
         {
             try
             {
-                var parameters = new SqlParameter[1];
+                var parameters = new SqlParameter[2];
                 parameters[0] = new SqlParameter("id", SqlDbType.BigInt) { Value = id };
+                parameters[1] = new SqlParameter("queueName", SqlDbType.BigInt) { Value = queueName };
 
                 using SqlConnection connection = new SqlConnection(_strConnection);
-                return await connection.NonQueryAsync("delete MessageQueue where Id = @id", parameters);
+                return await connection.NonQueryAsync("delete MessageQueue where Id = @id and QueueName = @queueName", parameters);
             }
             catch (Exception ex)
             {
@@ -126,6 +127,4 @@ namespace FoxMQ
             }
         }
     }
-
-
 }
