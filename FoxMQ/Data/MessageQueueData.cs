@@ -116,7 +116,7 @@ namespace FoxMQ
             {
                 var parameters = new SqlParameter[2];
                 parameters[0] = new SqlParameter("id", SqlDbType.BigInt) { Value = id };
-                parameters[1] = new SqlParameter("queueName", SqlDbType.BigInt) { Value = queueName };
+                parameters[1] = new SqlParameter("queueName", SqlDbType.VarChar, 100) { Value = queueName };
 
                 using SqlConnection connection = new SqlConnection(_strConnection);
                 return await connection.NonQueryAsync("delete MessageQueue where Id = @id and QueueName = @queueName", parameters);
