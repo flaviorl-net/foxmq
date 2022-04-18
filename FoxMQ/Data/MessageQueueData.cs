@@ -1,14 +1,14 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using FoxMQ.Extensions;
+using FoxMQ.Interfaces;
 using FoxMQ.Model;
-using FoxMQ.Extensions;
+using Microsoft.Data.SqlClient;
+using System;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace FoxMQ
 {
-    public class MessageQueueData
+    public class MessageQueueData : IMessageQueueData
     {
         private string _strConnection = "Server=.\\SQLEXPRESS;Database=FoxMQ;Trusted_Connection=True;MultipleActiveResultSets=True";
 
@@ -127,5 +127,5 @@ namespace FoxMQ
         }
     }
 
-    
+
 }

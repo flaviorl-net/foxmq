@@ -57,7 +57,7 @@ namespace ClientAPI.Controllers
                     mensagem += ". Mensagem Criada em: " + response.Insertiondate;
 
                     await _foxMessage.Confirm(response.Id, QueueName);
-                    mensagem += ". Mensagem Removida";
+                    mensagem += ". Confirmação de processamento";
                 }
                 
                 return Ok(mensagem);

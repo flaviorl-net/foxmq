@@ -1,24 +1,21 @@
-﻿using FoxMQ.Context;
-using FoxMQ.Proto;
-using Grpc.Core;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using Google.Protobuf.WellKnownTypes;
-using System.Globalization;
+﻿using FoxMQ.Interfaces;
 using FoxMQ.Model;
+using FoxMQ.Proto;
+using Google.Protobuf.WellKnownTypes;
+using Grpc.Core;
+using System;
+using System.Threading.Tasks;
 
 namespace FoxMQ.Service
 {
     public class FoxMQService : FoxMQGrpcService.FoxMQGrpcServiceBase
     {
         private object _lock = new object();
-        private MessageQueueData _queueData;
+        private IMessageQueueData _queueData;
 
-        public FoxMQService(ILoggerFactory logger, FoxMQContext context)
+        public FoxMQService(IMessageQueueData queueData)
         {
-            _queueData = new MessageQueueData();
+            _queueData = queueData;
         }
 
         public override async Task<PublishResponse> Publish(PublishRequest request, ServerCallContext context)

@@ -16,8 +16,7 @@ namespace FoxMQ.Worker
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                new MessageQueueData().UnLock(1);
-
+                await new MessageQueueData().UnLock(1);
                 await Task.Delay(10000, stoppingToken);
             }
         }
