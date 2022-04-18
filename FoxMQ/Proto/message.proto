@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "FoxMQ.Proto";
+
+package FoxMQ;
+
+service FoxMQGrpcService {
+  rpc Publish (PublishRequest) returns (PublishResponse);
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Remove (RemoveRequest) returns (RemoveResponse);
+}
+
+//Publish
+message PublishRequest {
+  string fila = 1;
+  string body = 2;
+}
+
+message PublishResponse {
+  string id = 1;
+  bool status = 2;
+}
+
+//Get
+message GetRequest {
+  string fila = 1;
+}
+
+message GetResponse {
+  string body = 1;
+}
+
+//Remove
+message RemoveRequest {
+  string id = 1;
+}
+
+message RemoveResponse {
+  bool status = 1;
+}

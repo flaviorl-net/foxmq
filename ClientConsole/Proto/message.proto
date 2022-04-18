@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "FoxMQ.Proto";
+
+package FoxMQ;
+
+service FoxMQGrpcService {
+  rpc PublishMessage (RequestMessage) returns (ResponseMessage);
+}
+
+message RequestMessage {
+  string id = 1;
+  string fila = 2;
+}
+
+message ResponseMessage {
+  string id = 1;
+  string fila = 2;
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option csharp_namespace = "FoxMQ.Proto";
+
+package FoxMQ;
+
+import "google/protobuf/timestamp.proto";
+
+service FoxMQGrpcService {
+  rpc Publish (PublishRequest) returns (PublishResponse);
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc Confirm (ConfirmRequest) returns (ConfirmResponse);
+}
+
+//Publish
+message PublishRequest {
+  string queue = 1;
+  string body = 2;
+}
+
+message PublishResponse {
+  int64 id = 1;
+  bool status = 2;
+}
+
+//Get
+message GetRequest {
+  string queue = 1;
+}
+
+message GetResponse {
+  int64 id = 1;
+  string body = 2;
+  google.protobuf.Timestamp insertiondate = 3;
+  bool status = 4;
+}
+
+//Remove
+message ConfirmRequest {
+  int64 id = 1;
+  string queue = 2;
+}
+
+message ConfirmResponse {
+  bool status = 1;
+}
